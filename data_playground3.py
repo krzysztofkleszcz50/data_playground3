@@ -3,9 +3,11 @@ import streamlit as st
 from openai import OpenAI
 from dotenv import dotenv_values
 
-#wczytujemy plik klucz openAI
-env = dotenv_values(".env")
-openai_client = OpenAI(api_key=env["OPENAI_API_KEY"])
+#wczytujemy klucz openAI
+with st.expander("Wklej swój klucz OpenAI"):
+    openai_key = st.text_input("Wklej swój klucz OpenAI", type="password")
+    if openai_key:
+        openai_client = OpenAI(api_key=openai_key)
 
 #Tworzymy przycisk do czyszczenia pamięci
 def clear_session_state():
